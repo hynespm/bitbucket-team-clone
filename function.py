@@ -15,6 +15,7 @@ username = '<USERNAME>'
 password = '<PASSWORD>'
 
 
+# Function to build urls for api calls
 def request_url_generator(arguments, url):
     for argument in arguments:
         url = url + '/' + argument
@@ -124,8 +125,11 @@ def checkout_branches(temp_path):
     os.system("git checkout master")
 
 
+# Main function
 def main():
+    # 1. Retrieve the list repos from bitbucket
     repos = get_repos()
+    # 2. Clone the repos locally
     clone_repos(repos)
 
 
