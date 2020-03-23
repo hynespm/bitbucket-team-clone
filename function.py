@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 import requests
 import json
 import os
@@ -26,12 +25,6 @@ def request_url_generator(arguments, url):
 # Function to make calls to bitbucket
 def bitbucket_requester(url, auth, headers):
     r = requests.get(url, auth=auth, headers=headers).json()
-    return r
-
-
-# function to make post calls to bitbucket
-def bitbucket_poster(url, auth, headers, data):
-    r = requests.post(url, data=data)
     return r
 
 
