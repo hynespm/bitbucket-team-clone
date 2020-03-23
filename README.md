@@ -23,6 +23,8 @@ The repository contains code that does the following via the bitbucket API
 
 ### How to use
 
- * Set the TEAMNAME variable within the [function.py](function.py)
- * Add USERNAME and PASSWORD credentials to the [function.py](function.py)
- * Choose the directory you wish to use where you store all the repositories 
+The main script contains three variables which need to be set, they are the following
+
+ * TEAMNAME - bitbucket team name
+ * USERNAME & PASSWORD - credentials you use to log into your bitbucket
+ * OS_PATH - directory where the repositories will be cloned to

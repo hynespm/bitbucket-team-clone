@@ -10,7 +10,7 @@ headers = {'Content-Type': 'application/json'}
 repo_clone_urls = []
 # Variables to be set
 team_name = '<TEAMNAME>'
-os_path = '<DIRECTORY_FOR_REPOSITORIES'
+os_path = '<DIRECTORY_FOR_REPOSITORIES>'
 username = '<USERNAME>'
 password = '<PASSWORD>'
 
