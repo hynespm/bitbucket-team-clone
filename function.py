@@ -55,24 +55,18 @@ def get_repos():
     return repo_clone_urls
 
 
-# Function to pull from the remote
+# Function to pull from the remote branches
 def pull_from_remote(temp_path):
-    # Change to the directory
     os.chdir(temp_path)
-    os.system("git pull")
-    os.system("git branch -a >> branches.json")  # Cloning all remote branches
-    text_file = open("branches.json", "r")
-    lines = text_file.readlines()
-
-    index = 1
-    for line in lines:
-        if index != 1:
-            remote = str(line)
-            remote_list = remote.split("/")
-            branch = remote_list[-1]
-            if branch.strip() != "master":
-                os.system("git pull")
-        index = index + 1
+    repo = git.Repo(temp_path)
+    remote_refs = repo.remote().refs
+    for ref in remote_refs:
+        remote_ref = str(ref).split("/")
+        branch = remote_ref[-1]
+        if branch != "HEAD":
+            print("Branch:" + branch.strip())
+            os.system("git checkout " + branch.strip())
+            os.system("git pull")
 
 
 # Function to clone the repos
@@ -80,6 +74,7 @@ def clone_repos(repos):
     try:
         # Clone repos and pull remote branches
         for repo in repos:
+            print("Repo Name:" + repo['name'])
             temp_path = os_path + "\\" + repo['name']
             isdir = os.path.isdir(temp_path)
             # Check if the directory exists - if it doesnt - clone it
@@ -89,8 +84,6 @@ def clone_repos(repos):
                 checkout_branches(temp_path)
             # Check for updates
             pull_from_remote(temp_path)
-            break
-
 
     except OSError:
         print("Creation of the directory %s failed" % temp_path)
